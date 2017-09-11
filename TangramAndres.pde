@@ -21,6 +21,13 @@ PImage Miniatura10;
 
 //Nivel del juego
 int Nivel = 0;
+Boolean Menu = true;
+Boolean Instrucciones = false;
+Boolean Nivel1 = false;
+Boolean Nivel2 = false;
+Boolean Nivel3 = false;
+Boolean Nivel4 = false;
+Boolean Nivel5 = false;
 
 //Posicion de figuras, T significa triangulo y C cuadrilatero
 //Figura 1
@@ -272,21 +279,82 @@ void mouseDragged() {
 
 //Dentro de la funcion Draw el codigo se ejecuta constantemente
 void draw() {
-  println(C2X);
-  println(C2Y);
 
+  //El numero de pixeles blancos se reinicia tras cada frame
+  CountPixelsWhite = 0;
 
-  if (Nivel != 0) {
+  if (Menu) {
+    Instrucciones = false;
+    Nivel1 = false;
+    Nivel2 = false;
+    Nivel3 = false;
+    Nivel4 = false;
+    Nivel5 = false;
+  }
+  if (Instrucciones) {
+    Menu = false;
+    Nivel1 = false;
+    Nivel2 = false;
+    Nivel3 = false;
+    Nivel4 = false;
+    Nivel5 = false;
+  }
+  if (Nivel1) {
+    Menu = false;
+    Instrucciones = false;
+    Nivel2 = false;
+    Nivel3 = false;
+    Nivel4 = false;
+    Nivel5 = false;
+  }
+  if (Nivel2) {
+    Menu = false;
+    Instrucciones = false;
+    Nivel1 = false;
+    Nivel3 = false;
+    Nivel4 = false;
+    Nivel5 = false;
+  }
+  if (Nivel3) {
+    Menu = false;
+    Instrucciones = false;
+    Nivel2 = false;
+    Nivel1 = false;
+    Nivel4 = false;
+    Nivel5 = false;
+  }
+  if (Nivel4) {
+    Menu = false;
+    Instrucciones = false;
+    Nivel2 = false;
+    Nivel3 = false;
+    Nivel1 = false;
+    Nivel5 = false;
+  }
+  if (Nivel5) {
+    Menu = false;
+    Instrucciones = false;
+    Nivel2 = false;
+    Nivel3 = false;
+    Nivel4 = false;
+    Nivel1 = false;
+  }
+  println(Menu);
+  println(Instrucciones);
+  println(Nivel1);
+  println(Nivel2);
+  println(Nivel3);
+  println(Nivel4);
+  println(Nivel5);
+
+  if (Menu==false) {
     background(Fondo);
   } else {
     //No hacer nada
   }
 
-  //El numero de pixeles blancos se reinicia tras cada frame
-  CountPixelsWhite = 0;
-
   //Se pinta el color de fondo en cada frame
-  if (Nivel == 0) {
+  if (Menu) {
     background(Fondo);
   }
 
@@ -328,7 +396,7 @@ void draw() {
   }
 
   //Interfaz grafica
-  if (Nivel == 0) {
+  if (Menu) {
 
     fill(0);
     textSize(30);
@@ -364,14 +432,16 @@ void draw() {
     text("Nivel 5", 950, 360);
   }
   //Seleccion de nivel
-  if (Nivel==0) {
+  if (Menu) {
 
-    if ((mousePressed==true)&&(click)&&(mouseX>1020)&&(mouseX<1270)&&(mouseY>560)&&(mouseY<620)) {
-      Nivel = -1;
+    if (mousePressed==true&&(click)&&(mouseX>1020)&&(mouseX<1270)&&(mouseY>560)&&(mouseY<620)) {
+      Menu = false;
+      Instrucciones = true;
     }
 
-    if ((mousePressed==true)&&(click)&&(mouseX>100)&&(mouseX<300)&&(mouseY>150)&&(mouseY<350)) {
-      Nivel = 1;
+    if (mousePressed==true&&(click)&&(mouseX>100)&&(mouseX<300)&&(mouseY>150)&&(mouseY<350)) {
+      Menu = false;
+      Nivel1 = true;
       T1X = -70;
       T1Y = 530;
       T2X = 240;
@@ -394,8 +464,9 @@ void draw() {
       RC1 = 0;
       RC2 = -2;
     }
-    if ((mousePressed==true)&&(click)&&(mouseX>300)&&(mouseX<500)&&(mouseY>150)&&(mouseY<350)) {
-      Nivel = 2;
+    if (mousePressed==true&&(click)&&(mouseX>300)&&(mouseX<500)&&(mouseY>150)&&(mouseY<350)) {
+      Menu = false;
+      Nivel2 = true;
       T1X = -70;
       T1Y = 530;
       T2X = 240;
@@ -418,8 +489,9 @@ void draw() {
       RC1 = 0;
       RC2 = -2;
     }
-    if ((mousePressed==true)&&(click)&&(mouseX>500)&&(mouseX<700)&&(mouseY>150)&&(mouseY<350)) {
-      Nivel = 3;
+    if (mousePressed==true&&(click)&&(mouseX>500)&&(mouseX<700)&&(mouseY>150)&&(mouseY<350)) {
+      Menu = false;
+      Nivel3 = true;
       T1X = -70;
       T1Y = 530;
       T2X = 240;
@@ -442,8 +514,9 @@ void draw() {
       RC1 = 0;
       RC2 = -2;
     }
-    if ((mousePressed==true)&&(click)&&(mouseX>700)&&(mouseX<900)&&(mouseY>150)&&(mouseY<350)) {
-      Nivel = 4;
+    if (mousePressed==true&&(click)&&(mouseX>700)&&(mouseX<900)&&(mouseY>150)&&(mouseY<350)) {
+      Menu = false;
+      Nivel4 = true;
       T1X = -70;
       T1Y = 530;
       T2X = 240;
@@ -466,8 +539,9 @@ void draw() {
       RC1 = 0;
       RC2 = -2;
     }
-    if ((mousePressed==true)&&(click)&&(mouseX>900)&&(mouseX<1100)&&(mouseY>150)&&(mouseY<350)) {
-      Nivel = 5;
+    if (mousePressed==true&&(click)&&(mouseX>900)&&(mouseX<1100)&&(mouseY>150)&&(mouseY<350)) {
+      Menu = false;
+      Nivel5 = true;
       T1X = -70;
       T1Y = 530;
       T2X = 240;
@@ -493,11 +567,12 @@ void draw() {
   }
 
   //Instrucciones
-  if (Nivel == -1) {
+  if (Instrucciones) {
     fill(0);
     textSize(70);
     text("Instrucciones", 450, 100);
     textSize(40);
+    fill(255);
     text("Para ganar debes completar la figura utilizando", 200, 170);
     text("las piezas dadas, para esto puedes mover y rotar", 200, 210);
     text("con teclado y mouse las piezas. Para seleccionar", 200, 250);
@@ -508,13 +583,13 @@ void draw() {
     text("se da con las teclas WASD y se rota con Q y E", 200, 450);
   }
   //Marcos del tangram dependiendo el nivel
-  if (Nivel==1) {
+  if (Nivel1) {
     noStroke();
     fill(255);
     rect(400, 200, 400, 400);
   }
 
-  if (Nivel==2) {
+  if (Nivel2) {
     fill(255);
     noStroke();
     pushMatrix();
@@ -553,7 +628,7 @@ void draw() {
     quad(0, 0, 0, -200, 100, -300, 100, -100);
     popMatrix();
   }
-  if (Nivel == 3) {
+  if (Nivel3) {
     fill(255);
     noStroke();
     pushMatrix();
@@ -592,7 +667,7 @@ void draw() {
     quad(0, 0, 0, -200, 100, -300, 100, -100);
     popMatrix();
   }
-  if (Nivel == 4) {
+  if (Nivel4) {
     fill(255);
     noStroke();
     pushMatrix();
@@ -631,7 +706,7 @@ void draw() {
     quad(0, 0, 0, -200, 100, -300, 100, -100);
     popMatrix();
   }
-  if (Nivel == 5) {
+  if (Nivel5) {
     fill(255);
     noStroke();
     pushMatrix();
@@ -686,16 +761,16 @@ void draw() {
   //Se hace pushMatrix y popMatrix para realizar transformaciones a la figura. # significa el numero de la figura
   //Se traslada el origen del eje de coordenadas a la posicion de la figura T#X y T#Y, si la figura esta en movimiento su posicion se ve afectada por el cambio de la posicion
   //Rotacion: 
-  if (Nivel!=0) {
+  if (Menu == false) {
     fill (1);
     textSize(20);
     text("Menu Principal", 50, 35);
     triangle(30, 30, 50, 10, 50, 50);
     if ((mousePressed==true&&(mouseButton==LEFT))&&(colorfigura==-16711423)) {
-      Nivel = 0;
+      Menu = true;
     }
   }
-  if (Nivel!=0&&Nivel!=-1) {
+  if (Menu==false&&Instrucciones==false) {
 
     pushMatrix();
     translate(T1X+DeltaT1X+200, T1Y+DeltaT1Y-100);
@@ -803,7 +878,6 @@ void draw() {
     strokeWeight(1);
     popMatrix();
   }
-
   /*Seleccion de piezas con el mouse, 
    para  selecionar una pieza el mouse debe estar encima del color de la pieza que se quiere seleccionar, 
    debe estar presionado y la variable Move debe ser igual a 0. Si se cumple esto la pieza esta seleccionada y la variable MoveT# se hace true*/
@@ -976,17 +1050,144 @@ void draw() {
 
   updatePixels();
   //Imprimir mensaje de Ganaste si no hay pixeles blancos en la pantalla
-  if (Nivel != 0&&Nivel!=-1) {
+  if (Menu==false&&Instrucciones==false) {
     if (CountPixelsWhite==0) {
       Complete = true;
-      textSize(100);
-      fill(0, 255, 0);
-      text("¡Ganaste!", 800, 150);
-    } else {
+      textSize(80);
+      fill(0, 254, 0);
+      if (Nivel5==false) {
+        text("¡Siguiente!", 800, 150);
+      }
+      if (Nivel5) {
+          textSize(80);
+          fill(0, 254, 0);
+          text("¡Terminaste!", 800, 150);
+          textSize(40);
+          text("Proximamente mas niveles", 750, 230);
+        }
+    }
+      else {
+        Complete = false;
+      }
+    }
+    //Pasar de nivel
+    if ((mousePressed==true&&(click)&&(mouseButton==LEFT))&&(Nivel1)&&(colorfigura==-16712192)&&(CountPixelsWhite==0)&&Complete) {
       Complete = false;
+      Nivel2 = true;
+      Nivel1 = false;
+      Nivel3 = false;
+      Nivel4 = false;
+      Nivel5 = false;
+      T1X = -70;
+      T1Y = 530;
+      T2X = 240;
+      T2Y = 10;
+      T3X = 1130;
+      T3Y = 40;
+      T4X = 980;
+      T4Y = 150;
+      T5X = 1100;
+      T5Y = 390;
+      C1X = 990;
+      C1Y = 420;
+      C2X = 1100;
+      C2Y = 730;
+      RT1 = 2;
+      RT2 = 0;
+      RT3 = 2;
+      RT4 = 1;
+      RT5 = -1;
+      RC1 = 0;
+      RC2 = -2;
+    } 
+    if ((mousePressed==true&&(click)&&(mouseButton==LEFT))&&(Nivel2)&&(colorfigura==-16712192)&&(CountPixelsWhite==0)&&Complete) {
+      Complete = false;
+      Nivel3 = true;
+      Nivel2 = false;
+      Nivel1 = false;
+      Nivel4 = false;
+      Nivel5 = false;
+      T1X = -70;
+      T1Y = 530;
+      T2X = 240;
+      T2Y = 10;
+      T3X = 1130;
+      T3Y = 40;
+      T4X = 980;
+      T4Y = 150;
+      T5X = 1100;
+      T5Y = 390;
+      C1X = 990;
+      C1Y = 420;
+      C2X = 1100;
+      C2Y = 730;
+      RT1 = 2;
+      RT2 = 0;
+      RT3 = 2;
+      RT4 = 1;
+      RT5 = -1;
+      RC1 = 0;
+      RC2 = -2;
+    }
+    if ((mousePressed==true&&(click)&&(mouseButton==LEFT))&&(Nivel3)&&(colorfigura==-16712192)&&(CountPixelsWhite==0)&&Complete) {
+      Complete = false;
+      Nivel4 = true;
+      Nivel1 = false;
+      Nivel3 = false;
+      Nivel2 = false;
+      Nivel5 = false;
+      T1X = -70;
+      T1Y = 530;
+      T2X = 240;
+      T2Y = 10;
+      T3X = 1130;
+      T3Y = 40;
+      T4X = 980;
+      T4Y = 150;
+      T5X = 1100;
+      T5Y = 390;
+      C1X = 990;
+      C1Y = 420;
+      C2X = 1100;
+      C2Y = 730;
+      RT1 = 2;
+      RT2 = 0;
+      RT3 = 2;
+      RT4 = 1;
+      RT5 = -1;
+      RC1 = 0;
+      RC2 = -2;
+    }
+    if ((mousePressed==true&&(click)&&(mouseButton==LEFT))&&(Nivel4)&&(colorfigura==-16712192)&&(CountPixelsWhite==0)&&Complete) {
+      Complete = false;
+      Nivel5 = true;
+      Nivel1 = false;
+      Nivel3 = false;
+      Nivel2 = false;
+      Nivel4 = false;
+      T1X = -70;
+      T1Y = 530;
+      T2X = 240;
+      T2Y = 10;
+      T3X = 1130;
+      T3Y = 40;
+      T4X = 980;
+      T4Y = 150;
+      T5X = 1100;
+      T5Y = 390;
+      C1X = 990;
+      C1Y = 420;
+      C2X = 1100;
+      C2Y = 730;
+      RT1 = 2;
+      RT2 = 0;
+      RT3 = 2;
+      RT4 = 1;
+      RT5 = -1;
+      RC1 = 0;
+      RC2 = -2;
     }
   }
-}
 //Detecta el movimiento de la rueda y suma o resta al angulo de rotacion de cada pieza, event.getCount() toma el valor de 1 o -1 dependiendo del sentido de la rotacion
 void mouseWheel(MouseEvent event) {
   if (MoveT1) {
